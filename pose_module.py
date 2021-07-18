@@ -4,6 +4,7 @@ import time
 import math
 
 class poseDetector():
+    # will check if the threshold is bigger than 0.5 to track or detection.
     def __init__(self, mode=False, upBody=False, smooth=True,
                  detectionCon=0.5, trackCon=0.5):
         self.mode = mode
@@ -60,7 +61,7 @@ class poseDetector():
         return angle
 def main():
     # cap = cv2.VideoCapture('PoseVideos/1.mp4')
-    cap = cv2.VideoCapture('..morecv/pose.mp4')
+    cap = cv2.VideoCapture('pose.mp4')
     pTime = 0
     detector = poseDetector()
     while True:
