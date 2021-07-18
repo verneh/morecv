@@ -3,6 +3,7 @@ import cv2
 import mediapipe as mp
 import time
 
+# to access webcam
 cap = cv2.VideoCapture(0)
 
 mpHands = mp.solutions.hands
@@ -13,10 +14,14 @@ pTime = 0
 cTime = 0
 
 while True:
+    
     success, img = cap.read()
     imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     results = hands.process(imgRGB)
-    # print(results.multi_hand_landmarks)
+    
+    # multi hand landmarks - performs precise keypoint localization 
+    # of 21 3D hand-knuckle coordinates inside the detected hand regions 
+    #  via regression, that is direct coordinate prediction.
 
     if results.multi_hand_landmarks:
         for handLms in results.multi_hand_landmarks:
