@@ -16,6 +16,7 @@ class poseDetector():
         self.mpPose = mp.solutions.pose
         self.pose = self.mpPose.Pose(self.mode, self.upBody, self.smooth,
                                      self.detectionCon, self.trackCon)
+
     def findPose(self, img, draw=True):
         imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         self.results = self.pose.process(imgRGB)
@@ -24,6 +25,7 @@ class poseDetector():
                 self.mpDraw.draw_landmarks(img, self.results.pose_landmarks,
                                            self.mpPose.POSE_CONNECTIONS)
         return img
+
     def findPosition(self, img, draw=True):
         self.lmList = []
         if self.results.pose_landmarks:
@@ -35,6 +37,7 @@ class poseDetector():
                 if draw:
                     cv2.circle(img, (cx, cy), 5, (255, 0, 0), cv2.FILLED)
         return self.lmList
+
     def findAngle(self, img, p1, p2, p3, draw=True):
         # Get the landmarks
         x1, y1 = self.lmList[p1][1:]
@@ -59,6 +62,7 @@ class poseDetector():
             cv2.putText(img, str(int(angle)), (x2 - 50, y2 + 50),
                         cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 255), 2)
         return angle
+
 def main():
     # cap = cv2.VideoCapture('PoseVideos/1.mp4')
     cap = cv2.VideoCapture('pose.mp4')
@@ -78,5 +82,6 @@ def main():
                     (255, 0, 0), 3)
         cv2.imshow("Pose Test Image", img)
         cv2.waitKey(1)
+        
 if __name__ == "__main__":
     main()
