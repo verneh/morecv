@@ -1,13 +1,13 @@
 import cv2
 import mediapipe as mp
 import time
-import HandTrackingModule as htm
+import handtracking_module as htm
 
 # We are calling functions from the HandTrackingModule
 
 pTime = 0
 cTime = 0
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 detector = htm.handDetector()
 
 while True:
