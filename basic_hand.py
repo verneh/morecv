@@ -8,6 +8,7 @@ cap = cv2.VideoCapture(0)
 
 mpHands = mp.solutions.hands
 hands = mpHands.Hands()
+# Utilities to draw landmarks and connectors.
 mpDraw = mp.solutions.drawing_utils
 
 pTime = 0
@@ -24,7 +25,9 @@ while True:
     #  via regression, that is direct coordinate prediction.
 
     if results.multi_hand_landmarks:
+
         for handLms in results.multi_hand_landmarks:
+            # index number and landmark. find it in the hand.
             for id, lm in enumerate(handLms.landmark):
                 # print(id, lm)
                 h, w, c = img.shape
@@ -43,4 +46,4 @@ while True:
                 (255, 0, 255), 3)
 
     cv2.imshow("Mediapipe", img)
-    cv2.waitKey(0)
+    cv2.waitKey(1)
